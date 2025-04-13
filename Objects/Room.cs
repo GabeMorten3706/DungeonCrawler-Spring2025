@@ -1,5 +1,6 @@
-using UnityEngine;
 using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public class Room
 {
@@ -15,9 +16,41 @@ public class Room
         this.thePlayer = null;
     }
 
+    public string getName()
+    {
+        return this.name;
+    }
+
+    public void tryToTakeExit(string direction)
+    {
+        if(this.hasExit(direction))
+        {
+            //remove the player from the current room
+            //place them in the destination room in that direction
+            //update the room the player is currently in so the room exits visually update
+        }
+        else
+        {
+            Debug.Log("No Exit In This Direction");
+        }
+    }
+
+    public bool hasExit(string direction)
+    {
+        for(int i = 0; i < this.currNumberOfExits; i++)
+        {
+            if(String.Equals(this.availableExits[i].getDirection(), direction))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setPlayer(Player p)
     {
         this.thePlayer = p;
+        this.thePlayer.setCurrentRoom(this);
     }
 
     public void addExit(string direction, Room destination)
