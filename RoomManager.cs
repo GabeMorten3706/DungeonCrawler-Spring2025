@@ -31,21 +31,32 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        bool didChangeRoom = false;
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             //try to go to the north
+            didChangeRoom = Core.thePlayer.getCurrentRoom().tryToTakeExit("north");
         }
         else if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             //try to go to the west
+            didChangeRoom = Core.thePlayer.getCurrentRoom().tryToTakeExit("west");
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             //try to go to the east
+            didChangeRoom = Core.thePlayer.getCurrentRoom().tryToTakeExit("east");
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             //try to go to the south
+            didChangeRoom = Core.thePlayer.getCurrentRoom().tryToTakeExit("south");
+        }
+
+        //did we change rooms?
+        if(didChangeRoom)
+        {
+            this.setupRoom();
         }
     }
 }
