@@ -10,7 +10,6 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-        Core.thePlayer = new Player("Gabe");
         this.theDungeon = new Dungeon();
         this.setupRoom();
         this.mmCurrPos = Core.mmStartPos;
